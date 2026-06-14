@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0"/>
+    <title>NeuroFlash — Brain Age Test</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!-- SCREEN 1: LANDING -->
+    <div class="screen active" id="screen-landing">
+      <h1>🧠 NeuroFlash</h1>
+      <p class="tagline">
+        Discover your Brain Age in 4 quick games
+      </p>
+      <button class="btn-primary"
+        onclick="showScreen('screen-dashboard')">
+        Start Test
+      </button>
+    </div>
+
+    <!-- SCREEN 2: DASHBOARD -->
+    <div class="screen" id="screen-dashboard">
+      <p class="game-label">Choose Your Challenge</p>
+      <h2>Game Dashboard</h2>
+      <p class="instruction">
+        Play one game or take the full brain test!
+      </p>
+
+      <div class="game-cards">
+
+        <div class="game-card" 
+             onclick="playSingle('game1')">
+          <div class="game-card-icon">🔢</div>
+          <p class="game-card-title">Number Memory</p>
+          <p class="game-card-desc">
+            Remember the number before time runs out
+          </p>
+        </div>
+
+        <div class="game-card" 
+             onclick="playSingle('game2')">
+          <div class="game-card-icon">🃏</div>
+          <p class="game-card-title">Memory Cards</p>
+          <p class="game-card-desc">
+            Find all matching pairs before time runs out
+          </p>
+        </div>
+
+        <div class="game-card" 
+             onclick="playSingle('game3')">
+          <div class="game-card-icon">🎨</div>
+          <p class="game-card-title">Color Match</p>
+          <p class="game-card-desc">
+            Does the text color match the word?
+          </p>
+        </div>
+
+        <div class="game-card" 
+             onclick="playSingle('game4')">
+          <div class="game-card-icon">📝</div>
+          <p class="game-card-title">Word Scramble</p>
+          <p class="game-card-desc">
+            Unscramble the word before time runs out
+          </p>
+        </div>
+
+      </div>
+
+      <button class="btn-primary btn-full"
+        onclick="playAll()">
+        🏆 Take Full Brain Test
+      </button>
+    </div>
+
+    <!-- SCREEN 3: NUMBER MEMORY -->
+    <div class="screen" id="screen-game1">
+      <p class="game-label">Game 1 of 4</p>
+      <h2>Number Memory</h2>
+      <p class="instruction">
+        Memorize the number before time runs out!
+      </p>
+      <div class="countdown-timer" id="countdown1">
+        <div class="countdown-ring" id="ring1"></div>
+        <span class="countdown-num" id="cnum1">5</span>
+      </div>
+      <div class="number-display" id="number-display">
+      </div>
+      <input type="number" id="number-input"
+             placeholder="Type the number here" />
+      <button class="btn-primary" id="game1-btn"
+              onclick="startGame1()">Start</button>
+    </div>
+
+    <!-- SCREEN 4: MEMORY CARDS -->
+    <div class="screen" id="screen-game2">
+      <p class="game-label">Game 2 of 4</p>
+      <h2>Memory Cards</h2>
+      <p class="instruction">
+        Find all matching pairs!
+      </p>
+      <div class="countdown-timer" id="countdown2">
+        <div class="countdown-ring" id="ring2"></div>
+        <span class="countdown-num" id="cnum2">60</span>
+      </div>
+      <div class="cards-grid" id="cards-grid"></div>
+    </div>
+
+    <!-- SCREEN 5: COLOR MATCH -->
+    <div class="screen" id="screen-game3">
+      <p class="game-label">Game 3 of 4</p>
+      <h2>Color Match</h2>
+      <p class="instruction">
+        Does the text COLOR match the word?
+      </p>
+      <div class="countdown-timer" id="countdown3">
+        <div class="countdown-ring" id="ring3"></div>
+        <span class="countdown-num" id="cnum3">5</span>
+      </div>
+      <div class="color-word" id="color-word"></div>
+      <div class="btn-row">
+        <button class="btn-yes"
+          onclick="colorAnswer(true)">YES</button>
+        <button class="btn-no"
+          onclick="colorAnswer(false)">NO</button>
+      </div>
+      <p class="score-display" id="game3-score">
+        Round: 0/8
+      </p>
+    </div>
+
+    <!-- SCREEN 6: WORD SCRAMBLE -->
+    <div class="screen" id="screen-game4">
+      <p class="game-label">Game 4 of 4</p>
+      <h2>Word Scramble</h2>
+      <p class="instruction">
+        Unscramble the word in time!
+      </p>
+      <div class="countdown-timer" id="countdown4">
+        <div class="countdown-ring" id="ring4"></div>
+        <span class="countdown-num" id="cnum4">10</span>
+      </div>
+      <div class="scrambled-word" id="scrambled-word">
+      </div>
+      <input type="text" id="scramble-input"
+             placeholder="Type the correct word" />
+      <button class="btn-primary"
+        onclick="checkScramble()">Submit</button>
+      <p class="score-display" id="game4-score">
+        Score: 0/5
+      </p>
+    </div>
+
+    <!-- SCREEN 7: RESULT -->
+    <div class="screen" id="screen-result">
+      <p class="game-label">Your Results</p>
+      <h2>Brain Age</h2>
+      <div class="result-age" id="result-age"></div>
+      <p class="result-msg" id="result-msg"></p>
+
+      <div class="score-bars">
+        <div class="score-row">
+          <span class="score-label">🔢 Number Memory</span>
+          <div class="bar-track">
+            <div class="bar-fill" id="bar1"></div>
+          </div>
+          <span class="score-num" id="num1">0%</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">🃏 Memory Cards</span>
+          <div class="bar-track">
+            <div class="bar-fill" id="bar2"></div>
+          </div>
+          <span class="score-num" id="num2">0%</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">🎨 Color Match</span>
+          <div class="bar-track">
+            <div class="bar-fill" id="bar3"></div>
+          </div>
+          <span class="score-num" id="num3">0%</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">📝 Word Scramble</span>
+          <div class="bar-track">
+            <div class="bar-fill" id="bar4"></div>
+          </div>
+          <span class="score-num" id="num4">0%</span>
+        </div>
+      </div>
+
+      <div class="overall-score">
+        <p class="overall-label">Overall Brain Score</p>
+        <div class="bar-track big">
+          <div class="bar-fill big-fill"
+               id="bar-overall"></div>
+        </div>
+        <span class="score-num" 
+              id="num-overall">0%</span>
+      </div>
+
+      <div class="age-guide">
+        <p class="guide-title">🧠 Brain Age Guide</p>
+        <div class="guide-row">
+          <span class="guide-age coral">18</span>
+          <span class="guide-desc">
+            🔥 Lightning fast — Peak performance
+          </span>
+        </div>
+        <div class="guide-row">
+          <span class="guide-age orange">22</span>
+          <span class="guide-desc">
+            ⚡ Sharp and quick — Excellent!
+          </span>
+        </div>
+        <div class="guide-row">
+          <span class="guide-age yellow">28</span>
+          <span class="guide-desc">
+            🧠 Solid brain power — Good!
+          </span>
+        </div>
+        <div class="guide-row">
+          <span class="guide-age green">35</span>
+          <span class="guide-desc">
+            💪 Good but room to grow
+          </span>
+        </div>
+        <div class="guide-row">
+          <span class="guide-age gray">45</span>
+          <span class="guide-desc">
+            😅 Keep practicing!
+          </span>
+        </div>
+      </div>
+
+      <button class="btn-primary"
+        onclick="showScreen('screen-dashboard')">
+        Play Again 🔄
+      </button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+      
+    
+
+          

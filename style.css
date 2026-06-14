@@ -1,0 +1,416 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #ffffff;
+  color: #333333;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== SCREENS ===== */
+.screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 24px;
+  max-width: 520px;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* ===== LANDING ===== */
+h1 {
+  font-size: 48px;
+  font-weight: 800;
+  color: #FF6B6B;
+  margin-bottom: 12px;
+}
+
+.tagline {
+  font-size: 18px;
+  color: #777777;
+  margin-bottom: 40px;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 8px;
+}
+
+.game-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #FF6B6B;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.instruction {
+  font-size: 15px;
+  color: #777777;
+  margin-bottom: 28px;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+  background-color: #FF6B6B;
+  color: white;
+  border: none;
+  padding: 14px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #e05555;
+}
+
+.btn-full {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.btn-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.btn-yes {
+  background-color: #6BCB77;
+  color: white;
+  border: none;
+  padding: 16px 44px;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.btn-no {
+  background-color: #FF6B6B;
+  color: white;
+  border: none;
+  padding: 16px 44px;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+/* ===== DASHBOARD GAME CARDS ===== */
+.game-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.game-card {
+  background: #ffffff;
+  border: 2px solid #FFE0E0;
+  border-radius: 16px;
+  padding: 18px 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.game-card:hover {
+  border-color: #FF6B6B;
+  background: #FFF0EE;
+  transform: translateY(-2px);
+}
+
+.game-card-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.game-card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #333333;
+  margin: 0 0 4px;
+}
+
+.game-card-desc {
+  font-size: 12px;
+  color: #777777;
+  margin: 0;
+}
+
+/* ===== COUNTDOWN TIMER ===== */
+.countdown-timer {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 24px;
+}
+
+.countdown-ring {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 5px solid #FFE0E0;
+  border-top-color: #FF6B6B;
+  animation: spin 1s linear infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.countdown-num {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: 800;
+  color: #FF6B6B;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== NUMBER DISPLAY ===== */
+.number-display {
+  font-size: 56px;
+  font-weight: 800;
+  color: #FF6B6B;
+  min-height: 70px;
+  margin-bottom: 20px;
+  letter-spacing: 6px;
+}
+
+/* ===== INPUT ===== */
+input {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 18px;
+  border: 2px solid #FFD5D5;
+  border-radius: 12px;
+  text-align: center;
+  outline: none;
+  color: #333333;
+  transition: border 0.2s;
+  margin-bottom: 4px;
+}
+
+input:focus {
+  border-color: #FF6B6B;
+}
+
+/* ===== MEMORY CARDS ===== */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 70px);
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.mem-card {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  background: #FF6B6B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+}
+
+.mem-card.flipped {
+  background: #FFF0EE;
+  border: 2px solid #FF6B6B;
+}
+
+.mem-card.matched {
+  background: #6BCB77;
+  cursor: default;
+}
+
+.mem-card.hidden-face {
+  color: transparent;
+}
+
+/* ===== COLOR WORD ===== */
+.color-word {
+  font-size: 52px;
+  font-weight: 800;
+  margin: 8px 0 24px;
+  min-height: 64px;
+}
+
+/* ===== SCRAMBLED WORD ===== */
+.scrambled-word {
+  font-size: 44px;
+  font-weight: 800;
+  color: #FF6B6B;
+  letter-spacing: 8px;
+  margin-bottom: 20px;
+  min-height: 56px;
+}
+
+/* ===== SCORE DISPLAY ===== */
+.score-display {
+  margin-top: 12px;
+  font-size: 15px;
+  color: #777777;
+  font-weight: 600;
+}
+
+/* ===== RESULT ===== */
+.result-age {
+  font-size: 96px;
+  font-weight: 800;
+  color: #FF6B6B;
+  line-height: 1;
+  margin: 12px 0;
+}
+
+.result-msg {
+  font-size: 18px;
+  color: #777777;
+  margin-bottom: 24px;
+}
+
+/* ===== SCORE BARS ===== */
+.score-bars {
+  width: 100%;
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.score-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.score-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #333333;
+  width: 130px;
+  text-align: left;
+  flex-shrink: 0;
+}
+
+.bar-track {
+  flex: 1;
+  background: #FFE8E8;
+  border-radius: 20px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  width: 0%;
+  background: #FF6B6B;
+  border-radius: 20px;
+  transition: width 1s ease;
+}
+
+.score-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: #FF6B6B;
+  width: 34px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ===== OVERALL SCORE ===== */
+.overall-score {
+  width: 100%;
+  margin: 4px 0 20px;
+}
+
+.overall-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.bar-track.big {
+  height: 16px;
+  margin-bottom: 6px;
+}
+
+.big-fill {
+  background: #FF6B6B;
+}
+
+/* ===== BRAIN AGE GUIDE ===== */
+.age-guide {
+  width: 100%;
+  background: #FFF0EE;
+  border-radius: 16px;
+  padding: 16px;
+  margin: 4px 0 20px;
+  text-align: left;
+}
+
+.guide-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 12px;
+}
+
+.guide-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.guide-age {
+  font-size: 20px;
+  font-weight: 800;
+  width: 32px;
+  flex-shrink: 0;
+}
+
+.guide-age.coral { color: #FF6B6B; }
+.guide-age.orange { color: #FF8C42; }
+.guide-age.yellow { color: #FFB347; }
+.guide-age.green { color: #6BCB77; }
+.guide-age.gray { color: #999999; }
+
+.guide-desc {
+  font-size: 13px;
+  color: #555555;
+}
