@@ -414,3 +414,8 @@ input:focus {
   font-size: 13px;
   color: #555555;
 }
+/* Fix: keep the dashboard content near the top on tall screens (iPad/tablet) */
+#screen-dashboard {
+  justify-content: flex-start;
+  padding-top: 56px;
+}
